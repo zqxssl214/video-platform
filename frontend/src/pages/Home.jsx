@@ -8,13 +8,16 @@ export default function Home() {
   const [isEditingName, setIsEditingName] = useState(false);
   const [videos, setVideos] = useState([]);
 
+  // Берем адрес из настроек хостинга, либо локальный, если запускаем на ПК
+  const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000';
+
   const loadData = async () => {
     try {
-      const resV = await fetch('http://127.0.0.1:5000/api/videos');
+      const resV = await fetch(`${API_URL}/api/videos`);
       const dataV = await resV.json();
       setVideos(dataV);
 
-      const resC = await fetch('http://127.0.0.1:5000/api/chat');
+      const resC = await fetch(`${API_URL}/api/chat`);
       const dataC = await resC.json();
       setMessages(dataC);
     } catch (e) { console.error(e); }
@@ -31,7 +34,7 @@ export default function Home() {
     if (!inputText.trim()) return;
 
     try {
-      await fetch('http://127.0.0.1:5000/api/chat', {
+      await fetch(`${API_URL}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user: userName, text: inputText })
@@ -49,7 +52,7 @@ export default function Home() {
     formData.append('title', file.name.split('.')[0]);
 
     try {
-      await fetch('http://127.0.0.1:5000/api/upload', { method: 'POST', body: formData });
+      await fetch(`${API_URL}/api/upload`, { method: 'POST', body: formData });
       loadData();
     } catch (e) { alert('Ошибка загрузки'); }
   };

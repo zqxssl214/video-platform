@@ -8,10 +8,12 @@ export default function Register() {
   const [status, setStatus] = useState('');
   const navigate = useNavigate();
 
+  const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000';
+
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://127.0.0.1:5000/api/register', {
+      const res = await fetch(`${API_URL}/api/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, last_name: lastName, first_name: firstName })
@@ -30,8 +32,8 @@ export default function Register() {
       {/* КНОПКА ВОЗВРАТА НА ГЛАВНУЮ */}
       <div style={{ width: '100%', maxWidth: '460px', marginBottom: '15px', display: 'flex', justifyContent: 'flex-start' }}>
         <Link to="/" style={{ color: 'rgba(255, 255, 255, 0.8)', textDecoration: 'none', fontSize: '16px', fontWeight: '500', display: 'flex', alignItems: 'center', gap: '8px', transition: 'color 0.2s' }}
-              onMouseEnter={(e) => e.target.style.color = '#fff'}
-              onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.8)'}>
+             onMouseEnter={(e) => e.target.style.color = '#fff'}
+             onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.8)'}>
           ← На главную
         </Link>
       </div>
@@ -65,7 +67,6 @@ export default function Register() {
 
           <button type="submit" style={{ width: '100%', padding: '16px', background: '#3b38b6', color: '#fff', border: 'none', borderRadius: '12px', cursor: 'pointer', fontSize: '17px', fontWeight: 'bold', boxShadow: '0 4px 15px rgba(59,56,182,0.35)' }}>Отправить</button>
         </form>
-        {status && <p style={{ textAlign: 'center', marginTop: '20px', fontSize: '16px', fontWeight: 'bold', color: '#3b38b6' }}>{status}</p>}
       </div>
     </div>
   );
