@@ -55,8 +55,7 @@ export default function Login() {
         <span style={{ fontWeight: 'bold', borderBottom: '3px solid #fff', paddingBottom: '6px' }}>Код доступа</span>
       </div>
 
-      <div className="blueprint-card" style={{ width: '100%', maxWidth: '460px', padding: '45px 40px', borderRadius: '24px', boxSizing: 'border-box' }}>
-        <form onSubmit={handleLogin}>
+      <div className="blueprint-card" style={{ width: '100%', boxSizing: 'border-box' }}>        <form onSubmit={handleLogin}>
           <div style={{ fontSize: '15px', color: '#444', textAlign: 'center', marginBottom: '25px', fontWeight: '500', lineHeight: '1.6' }}>
             Укажите электронную почту для проверки доступа к трансляции
           </div>
