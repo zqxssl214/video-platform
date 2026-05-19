@@ -67,7 +67,7 @@ export default function Login() {
             value={email} 
             onChange={e => setEmail(e.target.value)} 
             required 
-            style={{ width: '100%', boxSizing:'border-box', padding: '14px', marginBottom: '25px', border: '1px solid #cbd5e1', borderRadius: '12px', fontSize: '16px', outline: 'none' }}
+            style={{ width: '100%', boxSizing: 'border-box', padding: '14px', marginBottom: '25px', border: '1px solid #cbd5e1', borderRadius: '12px', fontSize: '16px', outline: 'none' }}
           />
 
           <button type="submit" style={{ width: '100%', padding: '16px', background: '#3b38b6', color: '#fff', border: 'none', borderRadius: '12px', cursor: 'pointer', fontSize: '17px', fontWeight: 'bold', boxShadow: '0 4px 15px rgba(59,56,182,0.35)' }}>
