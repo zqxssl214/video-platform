@@ -5,7 +5,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# Путь к папке для видео
+
 UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'uploads')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
@@ -21,7 +21,6 @@ BASE_URL = os.environ.get('BACKEND_URL', 'http://127.0.0.1:5000')
 
 @app.route('/api/videos', methods=['GET'])
 def get_videos():
-    # Собираем список файлов каждый раз при запросе, чтобы видеть новые загрузки
     files = [f for f in os.listdir(UPLOAD_FOLDER) if f.lower().endswith(('.mp4', '.avi', '.mov', '.mkv'))]
     videos = []
     for idx, filename in enumerate(files, start=1):
@@ -44,10 +43,9 @@ def upload_video():
 
 @app.route('/api/videos/<filename>', methods=['GET'])
 def serve_video(filename):
-    # Добавляем mimetype, чтобы плеер точно понял, что это видео
     return send_from_directory(UPLOAD_FOLDER, filename, mimetype='video/mp4')
 
-# --- ЧАТ И ПОЛЬЗОВАТЕЛИ (остальные функции остаются как были) ---
+# --- ЧАТ И ПОЛЬЗОВАТЕЛИ ---
 @app.route('/api/chat', methods=['GET'])
 def get_messages(): return jsonify(messages_db), 200
 
